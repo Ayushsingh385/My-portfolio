@@ -1,0 +1,27 @@
+{
+  "name": "Alex Morgan - Full Stack Developer Portfolio",
+  "short_name": "Alex Morgan",
+  "description": "Portfolio of Alex Morgan - Full Stack Developer & UI/UX Designer specializing in React, Next.js, and modern web technologies.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0ea5e9",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
