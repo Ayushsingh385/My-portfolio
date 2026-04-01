@@ -34,8 +34,8 @@ A modern, production-ready portfolio website built with Next.js 14, Tailwind CSS
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/portfolio-website.git
-cd portfolio-website
+git clone https://github.com/Ayushsingh385/My-portfolio.git
+cd My-portfolio
 ```
 
 2. Install dependencies:
@@ -187,3 +187,4 @@ If you have any questions or need help customizing the portfolio, feel free to r
 ---
 
 Made with ❤️ using Next.js and Tailwind CSS
+
