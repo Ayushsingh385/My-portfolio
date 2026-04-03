@@ -20,6 +20,8 @@ interface ContactFormData {
   message: string;
 }
 
+import { personalInfo } from '@/data';
+
 /**
  * Validates the contact form data
  */
@@ -69,6 +71,9 @@ export async function POST(request: NextRequest) {
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    const privateKey = process.env.EMAILJS_PRIVATE_KEY; // Optional for REST API
+
+    console.log('ENV STATUS:', { hasServiceId: !!serviceId, hasTemplateId: !!templateId, hasPublicKey: !!publicKey });
 
     // Check if EmailJS is configured
     if (!serviceId || !templateId || !publicKey) {
@@ -83,50 +88,60 @@ export async function POST(request: NextRequest) {
         timestamp: new Date().toISOString(),
       });
 
-      // Return success for development/demo purposes
+      // Return success but indicate demo mode
       return NextResponse.json({
         success: true,
-        message: 'Message received! (Note: EmailJS not configured - running in demo mode)',
+        message: 'Message received! (Demo Mode: To send real emails, please configure EmailJS in .env.local)',
       });
     }
 
     // Send email via EmailJS
-    const emailjsResponse = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        service_id: serviceId,
-        template_id: templateId,
-        user_id: publicKey,
-        template_params: {
-          from_name: body.name,
-          from_email: body.email,
-          subject: body.subject,
-          message: body.message,
-          to_email: 'your-email@example.com', // Replace with your email
+    console.log('Attempting to send email via EmailJS with Service ID:', serviceId);
+    
+    try {
+      const emailjsResponse = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      }),
-    });
+        body: JSON.stringify({
+          service_id: serviceId,
+          template_id: templateId,
+          user_id: publicKey,
+          accessToken: privateKey, // Required for server-side requests (strict mode)
+          template_params: {
+            from_name: body.name,
+            from_email: body.email,
+            subject: body.subject,
+            message: body.message,
+            to_email: personalInfo.email,
+          },
+        }),
+      });
 
-    if (!emailjsResponse.ok) {
-      const errorData = await emailjsResponse.json();
-      console.error('EmailJS Error:', errorData);
-      throw new Error('Failed to send email');
+      if (!emailjsResponse.ok) {
+        const errorText = await emailjsResponse.text();
+        console.error('EmailJS Error Status:', emailjsResponse.status);
+        console.error('EmailJS Error Text:', errorText);
+        throw new Error(`EmailJS failed with status ${emailjsResponse.status}: ${errorText}`);
+      }
+
+      console.log('Email sent successfully via EmailJS!');
+      return NextResponse.json({
+        success: true,
+        message: 'Message sent successfully!',
+      });
+    } catch (fetchError) {
+      console.error('Network error calling EmailJS:', fetchError);
+      throw fetchError;
     }
-
-    return NextResponse.json({
-      success: true,
-      message: 'Message sent successfully!',
-    });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Contact API Error:', error);
 
     return NextResponse.json(
       {
         success: false,
-        message: 'Failed to send message. Please try again or email directly.',
+        message: error.message || 'Failed to send message. Please try again or email directly.',
       },
       { status: 500 }
     );
