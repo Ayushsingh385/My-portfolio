@@ -16,13 +16,13 @@ import {
 
 // Personal Information
 export const personalInfo = {
-  name: 'Ayush Singh',
+  name: 'Ayush Kumar Singh',
   title: 'Aspiring Software Engineer',
   tagline: 'Crafting Digital Experiences with Code & Creativity',
   email: 'ayushkumarskb1005@gmail.com',
   phone: '+91 80101 66979',
   location: 'Ballarpur, Maharashtra, India',
-  bio: `I am Ayush Singh, a recent Computer Science graduate with a strong foundation in programming and web development. I have hands-on experience in cloud migration, AI applications, and building web-based solutions.
+  bio: `I am Ayush Kumar Singh, a recent Computer Science graduate with a strong foundation in programming and web development. I have hands-on experience in cloud migration, AI applications, and building web-based solutions.
   
 My projects, including a cloud-based file storage application and an AI-powered legal management system, reflect my ability to deliver practical and innovative technology solutions. I am passionate about tackling complex challenges and constantly learning new technologies to build impactful digital experiences.`,
   resumeUrl: '/resume.pdf',
@@ -197,8 +197,8 @@ export const navLinks = [
 
 // SEO Metadata
 export const seoConfig = {
-  title: 'Ayush Singh | Aspiring Software Engineer',
-  description: 'Portfolio of Ayush Singh - Aspiring Software Engineer specializing in modern web technologies. Building beautiful, performant, and accessible web applications.',
+  title: 'Ayush Kumar Singh | Aspiring Software Engineer',
+  description: 'Portfolio of Ayush Kumar Singh - Aspiring Software Engineer specializing in modern web technologies. Building beautiful, performant, and accessible web applications.',
   keywords: [
     'Full Stack Developer',
     'Web Developer',
