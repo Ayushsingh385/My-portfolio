@@ -11,7 +11,6 @@ import {
   Palette,
   Database,
   Cloud,
-  Figma,
 } from 'lucide-react';
 
 // Personal Information

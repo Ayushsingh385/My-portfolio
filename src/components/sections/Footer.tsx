@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Heart, Github, Linkedin, Twitter, Mail, ArrowUp } from 'lucide-react';
+import { Heart, Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
 import { personalInfo, navLinks } from '@/data';
 
 /**

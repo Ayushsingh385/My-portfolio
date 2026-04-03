@@ -135,13 +135,15 @@ export async function POST(request: NextRequest) {
       console.error('Network error calling EmailJS:', fetchError);
       throw fetchError;
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Contact API Error:', error);
+
+    const errorMessage = error instanceof Error ? error.message : 'Failed to send message. Please try again or email directly.';
 
     return NextResponse.json(
       {
         success: false,
-        message: error.message || 'Failed to send message. Please try again or email directly.',
+        message: errorMessage,
       },
       { status: 500 }
     );
