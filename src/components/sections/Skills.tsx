@@ -88,7 +88,7 @@ export function Skills() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.03 }}
-              whileHover={{ scale: 1.1, y: -3 }}
+              whileHover={{ scale: 1.1, y: -5, transition: { duration: 0.2, ease: 'easeOut' } }}
             >
               <TechBadge name={tech.name} icon={tech.icon} />
             </motion.div>

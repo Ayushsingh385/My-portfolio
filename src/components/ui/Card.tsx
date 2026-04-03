@@ -19,18 +19,22 @@ interface CardProps {
 export function Card({ children, className, hover = true, glass = false, gradient = false }: CardProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      whileHover={hover ? { y: -5, transition: { duration: 0.2 } } : undefined}
+      whileHover={
+        hover
+          ? {
+              y: -5,
+              boxShadow:
+                '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 15px rgba(var(--primary-rgb), 0.1)',
+              transition: { duration: 0.3, ease: 'easeOut' },
+            }
+          : undefined
+      }
       className={cn(
-        'rounded-2xl p-6',
+        'rounded-2xl p-6 transition-colors duration-300',
         glass
           ? 'glass-card'
           : 'bg-white dark:bg-gray-800 shadow-card dark:shadow-card-dark',
         gradient && 'relative overflow-hidden',
-        hover && 'transition-shadow duration-300 hover:shadow-2xl',
         className
       )}
     >

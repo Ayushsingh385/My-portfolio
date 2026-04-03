@@ -83,12 +83,9 @@ interface TechBadgeProps {
 
 export function TechBadge({ name, icon }: TechBadgeProps) {
   return (
-    <motion.span
-      whileHover={{ scale: 1.05 }}
-      className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md border border-gray-200 dark:border-gray-700"
-    >
+    <span className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md border border-gray-200 dark:border-gray-700">
       {icon && <span>{icon}</span>}
       {name}
-    </motion.span>
+    </span>
   );
 }
