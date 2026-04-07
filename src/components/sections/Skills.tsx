@@ -28,7 +28,7 @@ export function Skills() {
           >
             <Card className="h-full" glass>
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 rounded-xl bg-gradient-to-br from-primary-500 to-accent-500 text-white">
+                <div className="p-3 rounded-xl text-white" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899)' }}>
                   <category.icon className="w-6 h-6" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -53,13 +53,14 @@ export function Skills() {
                         {skill.level}%
                       </span>
                     </div>
-                    <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                    <div className="h-2 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
                         viewport={{ once: true }}
                         transition={{ duration: 1, delay: skillIndex * 0.1 }}
-                        className="h-full bg-gradient-to-r from-primary-500 to-accent-500 rounded-full"
+                        className="h-full rounded-full"
+                        style={{ background: 'linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899)' }}
                       />
                     </div>
                   </motion.div>
@@ -93,7 +94,11 @@ export function Skills() {
                 scale: { delay: index * 0.03 }, 
                 opacity: { delay: index * 0.03 } 
               }}
-              whileHover={{ scale: 1.1, y: -5 }}
+              whileHover={{ 
+                scale: 1.15, 
+                y: -5,
+                boxShadow: '0 0 15px rgba(99, 102, 241, 0.3)',
+              }}
             >
               <TechBadge name={tech.name} icon={tech.icon} />
             </motion.div>

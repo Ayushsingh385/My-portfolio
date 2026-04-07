@@ -51,13 +51,19 @@ export function About() {
           className="relative"
         >
           <div className="relative w-full max-w-md mx-auto">
-            {/* Decorative background */}
-            <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-accent-500 rounded-2xl transform rotate-3 scale-105 opacity-20" />
+            {/* Animated decorative background */}
+            <motion.div
+              animate={{ rotate: [3, -3, 3], scale: [1.05, 1, 1.05] }}
+              transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute inset-0 rounded-2xl opacity-20"
+              style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899)' }}
+            />
 
             {/* Main image container */}
-            <div className="relative bg-gradient-to-br from-primary-500/10 to-accent-500/10 rounded-2xl p-8 backdrop-blur-sm">
+            <div className="relative bg-gradient-to-br from-primary-500/10 to-accent-500/10 rounded-2xl p-8 backdrop-blur-sm border border-white/10 dark:border-gray-700/30">
               {/* Avatar Image */}
-              <div className="aspect-square rounded-xl bg-gradient-to-br from-primary-500 to-accent-500 overflow-hidden flex items-center justify-center shadow-inner">
+              <div className="aspect-square rounded-xl overflow-hidden flex items-center justify-center shadow-glow-primary">
+                <div className="w-full h-full" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899)' }}>
                 {personalInfo.avatar ? (
                   <img
                     src={personalInfo.avatar}
@@ -79,22 +85,37 @@ export function About() {
                     {personalInfo.name.split(' ').map(n => n[0]).join('')}
                   </span>
                 )}
+                </div>
               </div>
 
               {/* Info cards */}
-              <div className="absolute -bottom-4 -right-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                whileHover={{ scale: 1.05 }}
+                className="absolute -bottom-4 -right-4 bg-white dark:bg-[#0f172a] rounded-xl p-4 shadow-lg border border-gray-100/50 dark:border-gray-700/30"
+              >
                 <div className="flex items-center gap-2 text-sm">
-                  <MapPin className="w-4 h-4 text-primary-500" />
+                  <MapPin className="w-4 h-4 text-primary-400" />
                   <span className="text-gray-600 dark:text-gray-300">{personalInfo.location}</span>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="absolute -top-4 -left-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                whileHover={{ scale: 1.05 }}
+                className="absolute -top-4 -left-4 bg-white dark:bg-[#0f172a] rounded-xl p-4 shadow-lg border border-gray-100/50 dark:border-gray-700/30"
+              >
                 <div className="flex items-center gap-2 text-sm">
-                  <GraduationCap className="w-4 h-4 text-primary-500" />
+                  <GraduationCap className="w-4 h-4 text-accent-500" />
                   <span className="text-gray-600 dark:text-gray-300">CS Student</span>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </motion.div>
@@ -118,14 +139,20 @@ export function About() {
 
           {/* Quick Info */}
           <div className="flex flex-wrap gap-4">
-            <a
+            <motion.a
               href={`mailto:${personalInfo.email}`}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 text-sm hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors"
+              whileHover={{ scale: 1.05 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm transition-all duration-300 border"
+              style={{
+                background: 'linear-gradient(135deg, rgba(99,102,241,0.1), rgba(139,92,246,0.1))',
+                borderColor: 'rgba(99,102,241,0.2)',
+                color: '#818cf8',
+              }}
             >
               <Mail className="w-4 h-4" />
               {personalInfo.email}
-            </a>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-sm">
+            </motion.a>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 text-sm border border-gray-200/50 dark:border-gray-700/30">
               <MapPin className="w-4 h-4" />
               {personalInfo.location}
             </div>
@@ -142,7 +169,7 @@ export function About() {
                 transition={{ delay: index * 0.1 }}
               >
                 <Card className="p-4 text-center" glass>
-                  <item.icon className="w-8 h-8 mx-auto mb-2 text-primary-500" />
+                  <item.icon className="w-8 h-8 mx-auto mb-2 text-primary-400" />
                   <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
                     {item.title}
                   </h4>

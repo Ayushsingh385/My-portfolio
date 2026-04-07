@@ -17,11 +17,11 @@ interface BadgeProps {
  */
 export function Badge({ children, variant = 'primary', size = 'md', className }: BadgeProps) {
   const variants = {
-    primary: 'bg-primary-100 text-primary-800 dark:bg-primary-900/30 dark:text-primary-300',
-    secondary: 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300',
-    success: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300',
-    warning: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300',
-    info: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300',
+    primary: 'bg-primary-100 text-primary-800 dark:bg-primary-900/20 dark:text-primary-300',
+    secondary: 'bg-gray-100 text-gray-800 dark:bg-white/5 dark:text-gray-300',
+    success: 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300',
+    warning: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300',
+    info: 'bg-secondary-100 text-secondary-800 dark:bg-secondary-900/20 dark:text-secondary-300',
   };
 
   const sizes = {
@@ -83,7 +83,7 @@ interface TechBadgeProps {
 
 export function TechBadge({ name, icon }: TechBadgeProps) {
   return (
-    <span className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md border border-gray-200 dark:border-gray-700">
+    <span className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium bg-gray-50 dark:bg-white/5 text-gray-700 dark:text-gray-300 rounded-md border border-gray-200/50 dark:border-gray-700/30 transition-all duration-300">
       {icon && <span>{icon}</span>}
       {name}
     </span>

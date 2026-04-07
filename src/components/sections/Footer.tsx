@@ -16,9 +16,9 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-gray-900 dark:bg-gray-950 text-white">
+    <footer className="relative bg-[#020617] text-white">
       {/* Gradient top border */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500" />
+      <div className="absolute top-0 left-0 right-0 h-1" style={{ background: 'linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899, #8b5cf6, #6366f1)' }} />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Main Footer Content */}
@@ -54,7 +54,8 @@ export function Footer() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -3 }}
                   whileTap={{ scale: 0.95 }}
-                  className="p-2 rounded-lg bg-gray-800 text-gray-400 hover:bg-primary-500 hover:text-white transition-colors"
+                  className="p-2 rounded-lg bg-white/5 text-gray-400 hover:text-white transition-all duration-300 border border-white/5 hover:border-primary-500/50"
+                  style={{ '--hover-bg': 'rgba(99,102,241,0.15)' } as React.CSSProperties}
                   aria-label={social.name}
                 >
                   <social.icon className="w-5 h-5" />
@@ -106,7 +107,7 @@ export function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-gray-800 pt-8">
+        <div className="border-t border-white/5 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Copyright */}
             <p className="text-gray-500 text-sm flex items-center gap-1">
@@ -120,7 +121,7 @@ export function Footer() {
               onClick={scrollToTop}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-800 text-gray-400 hover:bg-primary-500 hover:text-white transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 text-gray-400 hover:text-white transition-all duration-300 border border-white/10 hover:border-primary-500/50"
               aria-label="Scroll to top"
             >
               <ArrowUp className="w-4 h-4" />

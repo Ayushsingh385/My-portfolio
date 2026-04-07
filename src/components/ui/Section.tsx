@@ -24,9 +24,9 @@ export function Section({
   background = 'white',
 }: SectionProps) {
   const backgrounds = {
-    white: 'bg-white dark:bg-gray-900',
-    gray: 'bg-gray-50 dark:bg-gray-800/50',
-    gradient: 'bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800',
+    white: 'bg-white dark:bg-[#020617]',
+    gray: 'bg-gray-50 dark:bg-[#0a0f1e]',
+    gradient: 'bg-gradient-to-br from-gray-50 via-white to-primary-50/30 dark:from-[#020617] dark:via-[#0a0f1e] dark:to-primary-950/30',
   };
 
   return (
@@ -67,13 +67,22 @@ export function SectionHeader({ title, subtitle, centered = true, className }: S
     >
       <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
         {title}
-        <span className="text-primary-500">.</span>
+        <span className="gradient-text">.</span>
       </h2>
       {subtitle && (
         <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
           {subtitle}
         </p>
       )}
+      {/* Decorative gradient line under the title */}
+      <motion.div
+        initial={{ width: 0 }}
+        whileInView={{ width: '80px' }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className={cn('h-1 rounded-full mt-6', centered && 'mx-auto')}
+        style={{ background: 'linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899)' }}
+      />
     </motion.div>
   );
 }

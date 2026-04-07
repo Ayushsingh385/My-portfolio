@@ -8,6 +8,7 @@ html {
 /* Fix for scrollbar in dark mode */
 .dark {
   color-scheme: dark;
+  background-color: #020617;
 }
 
 /* Better text rendering */

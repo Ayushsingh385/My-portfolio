@@ -22,8 +22,8 @@ export function Hero() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
       },
     },
   };
@@ -33,7 +33,7 @@ export function Hero() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' },
+      transition: { duration: 0.6, ease: [0.23, 1, 0.32, 1] },
     },
   };
 
@@ -42,11 +42,38 @@ export function Hero() {
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-        {/* Gradient orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/10 dark:bg-primary-500/5 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-500/10 dark:bg-accent-500/5 rounded-full blur-3xl animate-pulse-slow animation-delay-500" />
+      {/* Deep midnight background with animated gradient mesh */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-primary-50/20 dark:from-[#020617] dark:via-[#0a0f1e] dark:to-[#0f0720]">
+        {/* Animated gradient orbs */}
+        <motion.div
+          animate={{
+            x: [0, 30, -20, 0],
+            y: [0, -30, 20, 0],
+            scale: [1, 1.1, 0.95, 1],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full blur-3xl"
+          style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%)' }}
+        />
+        <motion.div
+          animate={{
+            x: [0, -20, 30, 0],
+            y: [0, 20, -30, 0],
+            scale: [1, 0.95, 1.1, 1],
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-3xl"
+          style={{ background: 'radial-gradient(circle, rgba(236,72,153,0.12) 0%, transparent 70%)' }}
+        />
+        <motion.div
+          animate={{
+            x: [0, 15, -15, 0],
+            y: [0, -15, 15, 0],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl"
+          style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%)' }}
+        />
       </div>
 
       {/* Content */}
@@ -59,9 +86,17 @@ export function Hero() {
         <div className="max-w-4xl mx-auto text-center">
           {/* Greeting */}
           <motion.div variants={itemVariants} className="mb-6">
-            <span className="inline-block px-4 py-2 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-sm font-medium">
-              👋 Welcome to my portfolio
-            </span>
+            <motion.span
+              whileHover={{ scale: 1.05 }}
+              className="inline-block px-5 py-2.5 rounded-full text-sm font-medium border"
+              style={{
+                background: 'linear-gradient(135deg, rgba(99,102,241,0.1), rgba(139,92,246,0.1))',
+                borderColor: 'rgba(99,102,241,0.2)',
+                color: '#818cf8',
+              }}
+            >
+              <span className="animate-wave inline-block mr-1">👋</span> Welcome to my portfolio
+            </motion.span>
           </motion.div>
 
           {/* Name & Greeting */}
@@ -70,7 +105,7 @@ export function Hero() {
             className="flex flex-col items-center gap-3 mb-8"
           >
             <span className="text-xl sm:text-2xl md:text-3xl font-medium text-gray-600 dark:text-gray-400 flex items-center gap-2">
-              Hi, I&apos;m <span className="animate-wave">👋</span>
+              Hi, I&apos;m
             </span>
             <span className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-none">
               <span className="gradient-text whitespace-nowrap">{personalInfo.name}</span>
@@ -106,26 +141,36 @@ export function Hero() {
             >
               Get In Touch
             </Button>
-            <a
+            <motion.a
               href={personalInfo.resumeUrl}
               download
-              className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300"
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-[#0f172a] border-2 border-gray-200 dark:border-gray-700 rounded-full shadow-md hover:shadow-lg hover:border-primary-500 dark:hover:border-primary-400 transition-all duration-300"
             >
               <Download className="w-5 h-5 mr-2" />
               Download Resume
-            </a>
+            </motion.a>
           </motion.div>
 
           {/* Social Links */}
           <motion.div variants={itemVariants} className="flex items-center justify-center gap-4">
-            {socialLinks.map((social) => (
+            {socialLinks.map((social, index) => (
               <motion.a
                 key={social.name}
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-500 dark:hover:text-primary-400 transition-colors"
-                whileHover={{ scale: 1.1, y: -3 }}
+                className="p-3 rounded-full bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:text-white transition-all duration-300 border border-transparent hover:border-primary-500/50"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2 + index * 0.1 }}
+                whileHover={{
+                  scale: 1.15,
+                  y: -5,
+                  backgroundColor: 'rgba(99, 102, 241, 0.2)',
+                  boxShadow: '0 0 20px rgba(99, 102, 241, 0.3)',
+                }}
                 whileTap={{ scale: 0.95 }}
                 aria-label={social.ariaLabel}
               >
@@ -139,9 +184,9 @@ export function Hero() {
       
       {/* Scroll Indicator */}
       <motion.div
-        variants={itemVariants}
-        initial="hidden"
-        animate="visible"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
         className="absolute bottom-16 inset-x-0 flex justify-center z-20"
       >
         <motion.button
@@ -156,10 +201,29 @@ export function Hero() {
         </motion.button>
       </motion.div>
 
-      {/* Decorative elements */}
-      <div className="absolute top-20 left-10 w-20 h-20 border-2 border-primary-500/20 rounded-full animate-float" />
-      <div className="absolute top-40 right-20 w-10 h-10 bg-accent-500/20 rounded-lg rotate-45 animate-float animation-delay-200" />
-      <div className="absolute bottom-40 left-20 w-16 h-16 border-2 border-accent-500/20 rounded-lg rotate-12 animate-float animation-delay-400" />
+      {/* Decorative floating elements with gradient borders */}
+      <motion.div
+        animate={{ y: [0, -20, 0], rotate: [0, 180, 360] }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-20 left-10 w-20 h-20 rounded-full"
+        style={{ border: '2px solid rgba(99,102,241,0.2)' }}
+      />
+      <motion.div
+        animate={{ y: [0, 15, 0], rotate: [45, 90, 45] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-40 right-20 w-10 h-10 rounded-lg"
+        style={{ background: 'rgba(236,72,153,0.15)' }}
+      />
+      <motion.div
+        animate={{ y: [0, -10, 0], rotate: [12, -12, 12] }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute bottom-40 left-20 w-16 h-16 rounded-lg"
+        style={{ border: '2px solid rgba(139,92,246,0.2)' }}
+      />
+      {/* Small glowing dots */}
+      <div className="absolute top-1/3 right-10 w-2 h-2 rounded-full bg-primary-500/50 animate-glow-dot" />
+      <div className="absolute bottom-1/3 left-16 w-2 h-2 rounded-full bg-accent-500/50 animate-glow-dot animation-delay-500" />
+      <div className="absolute top-2/3 right-1/3 w-1.5 h-1.5 rounded-full bg-secondary-500/50 animate-glow-dot animation-delay-300" />
     </section>
   );
 }

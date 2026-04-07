@@ -6,10 +6,10 @@ import { ReactNode, forwardRef } from 'react';
 
 // Button variants configuration
 const buttonVariants = {
-  primary: 'bg-gradient-to-r from-primary-500 to-accent-500 text-white shadow-lg hover:shadow-xl',
-  secondary: 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-2 border-gray-200 dark:border-gray-700 hover:border-primary-500 dark:hover:border-primary-400',
+  primary: 'text-white shadow-lg hover:shadow-glow-primary',
+  secondary: 'bg-white dark:bg-[#0f172a] text-gray-900 dark:text-white border-2 border-gray-200 dark:border-gray-700/50 hover:border-primary-500 dark:hover:border-primary-400',
   outline: 'bg-transparent border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white',
-  ghost: 'bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200',
+  ghost: 'bg-transparent hover:bg-gray-100 dark:hover:bg-white/5 text-gray-700 dark:text-gray-200',
 };
 
 const buttonSizes = {
@@ -54,11 +54,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(
           'inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-300',
           'disabled:opacity-50 disabled:cursor-not-allowed',
-          'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900',
+          'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-[#020617]',
           buttonVariants[variant],
           buttonSizes[size],
           className
         )}
+        style={variant === 'primary' ? { background: 'linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899)' } : undefined}
         disabled={disabled || isLoading}
         {...props}
       >

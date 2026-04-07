@@ -24,25 +24,25 @@ export function Card({ children, className, hover = true, glass = false, gradien
       whileHover={
         hover
           ? {
-              y: -5,
+              y: -8,
               boxShadow:
-                '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 15px rgba(10, 165, 233, 0.1)',
+                '0 25px 60px -15px rgba(99, 102, 241, 0.25), 0 0 20px rgba(139, 92, 246, 0.1)',
             }
           : undefined
       }
       transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
       className={cn(
-        'rounded-2xl p-6 border border-gray-100/50 dark:border-gray-700/50 transition-colors duration-300',
+        'rounded-2xl p-6 border border-gray-100/50 dark:border-gray-700/30 transition-colors duration-300',
         glass
           ? 'glass-card'
-          : 'bg-white dark:bg-gray-800 shadow-card dark:shadow-card-dark',
+          : 'bg-white dark:bg-[#0f172a] shadow-card dark:shadow-card-dark',
         gradient && 'relative overflow-hidden',
         className
       )}
     >
       {/* Gradient border effect */}
       {gradient && (
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary-500/20 to-accent-500/20 -z-10" />
+        <div className="absolute inset-0 rounded-2xl -z-10" style={{ background: 'linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.15), rgba(236,72,153,0.15))' }} />
       )}
       {children}
     </motion.div>

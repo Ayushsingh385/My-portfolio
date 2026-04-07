@@ -55,7 +55,7 @@ export function Navbar() {
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isAtTop
           ? 'bg-transparent'
-          : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg shadow-lg'
+          : 'bg-white/80 dark:bg-[#020617]/80 backdrop-blur-xl shadow-lg border-b border-gray-100/50 dark:border-gray-800/50'
       )}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -86,9 +86,9 @@ export function Navbar() {
                   scrollToSection(link.href);
                 }}
                 className={cn(
-                  'relative text-sm font-medium transition-colors animated-underline',
+                  'relative text-sm font-medium transition-all duration-300 animated-underline',
                   activeSection === link.href.slice(1)
-                    ? 'text-primary-500'
+                    ? 'text-primary-400 dark:text-primary-400'
                     : 'text-gray-600 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400'
                 )}
                 whileHover={{ y: -2 }}
@@ -125,7 +125,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800"
+            className="md:hidden bg-white/95 dark:bg-[#020617]/95 backdrop-blur-xl border-t border-gray-100/50 dark:border-gray-800/50"
           >
             <div className="container mx-auto px-4 py-4 space-y-2">
               {navLinks.map((link, index) => (
@@ -140,10 +140,10 @@ export function Navbar() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
                   className={cn(
-                    'block px-4 py-3 rounded-lg text-base font-medium transition-colors',
+                    'block px-4 py-3 rounded-lg text-base font-medium transition-all duration-300',
                     activeSection === link.href.slice(1)
-                      ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-500'
-                      : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800'
+                      ? 'bg-primary-500/10 dark:bg-primary-500/10 text-primary-500 border-l-2 border-primary-500'
+                      : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5'
                   )}
                 >
                   {link.name}

@@ -113,9 +113,9 @@ export function Contact() {
                 key={item.label}
                 href={item.href}
                 whileHover={{ scale: 1.02, x: 5 }}
-                className="flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all"
+                className="flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-[#0f172a] shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100/50 dark:border-gray-700/30"
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899)' }}>
                   <item.icon className="w-5 h-5 text-white" />
                 </div>
                 <div>
@@ -140,7 +140,7 @@ export function Contact() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -3 }}
                   whileTap={{ scale: 0.95 }}
-                  className="p-3 rounded-xl bg-white dark:bg-gray-800 shadow-sm hover:shadow-md text-gray-600 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors"
+                  className="p-3 rounded-xl bg-white dark:bg-[#0f172a] shadow-sm hover:shadow-lg text-gray-600 dark:text-gray-400 hover:text-primary-400 dark:hover:text-primary-400 transition-all duration-300 border border-gray-100/50 dark:border-gray-700/30"
                   aria-label={`Visit ${social.name}`}
                 >
                   <social.icon className="w-5 h-5" />

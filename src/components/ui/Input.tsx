@@ -34,13 +34,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             className={cn(
               'w-full px-4 py-3 rounded-lg border-2 transition-all duration-200',
-              'bg-white dark:bg-gray-800',
+              'bg-white dark:bg-[#0f172a]',
               'text-gray-900 dark:text-white',
               'placeholder:text-gray-400 dark:placeholder:text-gray-500',
               'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent',
               error
                 ? 'border-red-500 focus:ring-red-500'
-                : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600',
+                : 'border-gray-200 dark:border-gray-700/50 hover:border-primary-400 dark:hover:border-primary-500/50',
               className
             )}
             {...props}
@@ -95,13 +95,13 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             ref={ref}
             className={cn(
               'w-full px-4 py-3 rounded-lg border-2 transition-all duration-200 resize-none',
-              'bg-white dark:bg-gray-800',
+              'bg-white dark:bg-[#0f172a]',
               'text-gray-900 dark:text-white',
               'placeholder:text-gray-400 dark:placeholder:text-gray-500',
               'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent',
               error
                 ? 'border-red-500 focus:ring-red-500'
-                : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600',
+                : 'border-gray-200 dark:border-gray-700/50 hover:border-primary-400 dark:hover:border-primary-500/50',
               className
             )}
             {...props}
