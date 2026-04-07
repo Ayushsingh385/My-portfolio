@@ -8,9 +8,9 @@ import { NextRequest, NextResponse } from 'next/server';
  * 1. Create an account at https://www.emailjs.com/
  * 2. Set up an email service and template
  * 3. Add environment variables to .env.local:
- *    - NEXT_PUBLIC_EMAILJS_SERVICE_ID
- *    - NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
- *    - NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+ *    - EMAILJS_SERVICE_ID
+ *    - EMAILJS_TEMPLATE_ID
+ *    - EMAILJS_PUBLIC_KEY
  */
 
 interface ContactFormData {
@@ -67,10 +67,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get EmailJS configuration from environment variables
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    // Get EmailJS configuration from environment variables (using server-only variables for security)
+    const serviceId = process.env.EMAILJS_SERVICE_ID || process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.EMAILJS_TEMPLATE_ID || process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.EMAILJS_PUBLIC_KEY || process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
     const privateKey = process.env.EMAILJS_PRIVATE_KEY; // Optional for REST API
 
     console.log('ENV STATUS:', { hasServiceId: !!serviceId, hasTemplateId: !!templateId, hasPublicKey: !!publicKey });
